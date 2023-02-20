@@ -18,6 +18,13 @@ class Db {
     let found = users.filter(el => el.username === username && el.password === password && el.role === role);
     return found;
   }
+
+  async getPresentations(id){
+    let db = await this.getDatabase();
+    let presentations = db.presentations;
+    let found = presentations.filter(el => el.owner_id === id);
+    return found;
+  }
 }
 
 module.exports = Db;

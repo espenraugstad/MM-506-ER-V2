@@ -1,15 +1,15 @@
 export default class Config {
   constructor(method, body, token) {
     this.method = method;
-    this.body = JSON.stringify(body);
+    this.body = body;
     this.token = token;
   }
 
   get cfg() {
     let returnObj = {
-        method: this.method,
+        method: this.method
     };
-
+   
     let headers = {
         "content-type": "application/json"
     }
@@ -21,9 +21,9 @@ export default class Config {
     returnObj.headers = headers;
 
     if(this.body){
-        returnObj.body = this.body
+        returnObj.body = JSON.stringify(this.body);
+
     }
-    
     return returnObj;
   }
 }

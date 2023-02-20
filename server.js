@@ -8,30 +8,61 @@ server.use(express.static("public"));
 
 const db = new Storage();
 
-server.post("/login", async (req, res)=>{
-    let user = req.body.username;
-    let pass = req.body.password;
-    let role = req.body.role;
-    
-    let userFound = await db.checkUser(user, pass, role);
-    console.log(userFound);
-    if(userFound.length > 0){
-        if(userFound.length > 1){
-            console.log("Database error, duplicates found!");
-            console.log(userFound);
-            res.status(500).end();
-        } else {
-            console.log(`Found ${userFound[0].user_id}`);
-            res.status(200).json({id: userFound[0].user_id}).end();
-        }
-        
+/*** MIDDLEWARE ***/
+async function checkUser(req, res, next) {
+  let user, pass, role;
+  if (JSON.stringify(req.body) !== "{}") {
+    user = req.body.username;
+    pass = req.body.password;
+    role = req.body.role;
+  } else {
+    let token = req.headers.authorization.split(" ")[1];
+    [user, pass, role] = Buffer.from(token, "base64")
+      .toString("utf-8")
+      .split(":");
+  }
+
+  let userFound = await db.checkUser(user, pass, role);
+  if (userFound.length > 0) {
+    if (userFound.length > 1) {
+      console.log("Database error, duplicates found!");
+      console.log(userFound);
+      req.exists = true;
+      req.duplicate = true;
     } else {
-        console.log("User not found");
-        res.status(403).end();
+      req.exists = true;
+      req.duplicate = false;
+      req.user_id = userFound[0].user_id;
     }
+  } else {
+    console.log("User not found");
+    req.exists = false;
+    req.duplicate = false;
+  }
+
+  next();
+}
+
+server.post("/login", checkUser, async (req, res, next) => {
+  if (req.exists && req.duplicate) {
+    res.status(500).end();
+  } else if (req.exists && !req.duplicate) {
+    res.status(200).json({ id: req.user_id }).end();
+  } else {
+    res.status(403).end();
+  }
 });
 
-server.listen(PORT, ()=>{
-    console.log(`Listening to ${PORT}`);
-})
+server.get("/getPresentations", checkUser, async (req, res) => {
+  if (req.exists) {
+    let presentations = await db.getPresentations(req.user_id);
+    res.status(200).json(presentations).end();
 
+  } else {
+    res.status(500).end();
+  }
+});
+
+server.listen(PORT, () => {
+  console.log(`Listening to ${PORT}`);
+});
