@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&family=Roboto+Mono&display=swap');
+
+/*** || Common ***/
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto Flex', sans-serif;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    margin: 1rem;
+    min-width: 125px;
+    min-height: 1.5rem;
+}
+
+/*** || Utilities ***/
+.center-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/*** || Login ***/
+.login{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-element{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+/*** || Dashboards ***/
+.dashboard-container{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin: 0;
+    height: 100vh;
+}
+
+.dashboard-sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D9D9D9;
+    margin: 0;
+    
+}
+
+.user-image{
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 100px;
+    margin: 1rem auto;
+}
+
+#username{
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+.sidebar-menu-item{
+    margin: 1rem 0;
+    cursor: pointer;
+}
+
+.dashboard-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+/*** || Authoring ***/
+.authoring-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.authoring-areas{
+    display: grid;
+    grid-template-columns: 40vw 40vw;
+    gap: 1rem;
+    height: 100%;
+
+}
+
+#editor{
+    resize: none;
+    width: 100%;
+    border: 1px solid black;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.preview{
+    border: 1px solid black;
+}
+
+.navs{
+    margin: 2rem 0;
+}

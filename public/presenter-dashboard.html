@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/main.css">
+    <title>MMER</title>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <div class="dashboard-sidebar">
+        <div class="user-image"></div>
+        <div id="username">Username</div>
+        <div class="menu">
+          <div class="sidebar-menu-item" id="new">+ New presentation</div>
+          <div class="sidebar-menu-item" id="edit">Edit presentation</div>
+          <div class="sidebar-menu-item" id="run">Run presentation</div>
+          <div class="sidebar-menu-item" id="logout">Log out</div>
+        </div>
+      </div>
+      <main class="dashboard-main">
+        <h1>Presentations</h1>
+        <div id="presentations-list">
+            Here the presentations will be displayed.
+        </div>
+      </main>
+    </div>
+    <script src="./scripts/presenter-dashboard.js"></script>
+  </body>
+</html>
