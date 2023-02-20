@@ -123,6 +123,12 @@
             "username": "Tamstudent",
             "password": "789",
             "role": "student"
+        },
+        {
+            "user_id": 3,
+            "username": "Testuser",
+            "password": "123",
+            "role": "student" 
         }
     ],
     "active": [
