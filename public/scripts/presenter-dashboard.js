@@ -17,7 +17,14 @@ newPresentation.addEventListener("click", () => {
   location.href = "authoring.html";
 });
 
+edit.addEventListener("click", ()=>{
+  if(selectedPresentationId !== -1){
+    location.href = `authoring.html?pid=${selectedPresentationId}`;
+  }
+});
+
 logout.addEventListener("click", () => {
+  localStorage.clear();
   location.href = "index.html";
 });
 
@@ -43,8 +50,6 @@ logout.addEventListener("click", () => {
 function listPresentations() {
   presentationsList.innerHTML = "";
   for (let p of presentations) {
-    console.log(p);
-
     let presentationDiv = document.createElement("div");
     presentationDiv.classList.add("presentation-item");
 

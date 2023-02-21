@@ -119,6 +119,15 @@ button{
     height: 100vh;
 }
 
+#presentation-title{
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+#presentation-title-edit{
+    margin: 0 0 1.5rem;
+}
+
 .authoring-areas{
     display: grid;
     grid-template-columns: 40vw 40vw;

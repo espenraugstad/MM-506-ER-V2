@@ -63,6 +63,21 @@ server.get("/getPresentations", checkUser, async (req, res) => {
   }
 });
 
+server.get("/getPresentation/:idtoken", checkUser, async (req, res) =>{
+  if(req.exists){
+    let presentation = await db.getPresentation(req.params.idtoken);
+    if(presentation.length === 1){
+      res.status(200).json(presentation[0]).end();
+    } else if (presentation.length > 1){
+      res.status(500).json({message: "Duplicates found!"}).end();
+    } else {
+      res.status(404).json({message: "No presentations found"}).end();
+    }
+  } else {
+    res.status(403).json({message: "Invalid user"}).end();
+  }
+});
+
 server.listen(PORT, () => {
   console.log(`Listening to ${PORT}`);
 });

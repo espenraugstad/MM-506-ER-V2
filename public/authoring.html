@@ -9,7 +9,8 @@
 </head>
 <body>
     <main class="authoring-main">
-        <h1>Authoring</h1>
+        <h1 id="presentation-title" contenteditable="true">Authoring</h1>
+        <p id="presentation-title-edit">(Click to edit title)</p>
         <div class="authoring-areas">
             <textarea name="editor" id="editor" cols="30" rows="10"></textarea>
             <div class="preview"></div>
@@ -20,6 +21,6 @@
             <button id="start">Start presentation</button>
         </div>
     </main>
-    <script src="./scripts/authoring.js"></script>
+    <script src="./scripts/authoring.js" type="module"></script>
 </body>
 </html>
