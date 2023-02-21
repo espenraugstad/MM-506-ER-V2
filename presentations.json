@@ -4,7 +4,7 @@
             "presentation_id": 0,
             "presentation_title": "Test presentation",
             "owner_id": 0,
-            "markdown": "# Welcome\nThis is a welcome message.\n\n---\n\n# Example\n* Point 1\n* Point 2\n\n---\n# More fun stuff\nThis project is being developed as part of a masters project at the [University of Agder].\n\n---\n# Test\nSlide.\n\n---\n\n# This is a slide with an image\nAnd here is an image: \n\n![Alt text](images/book-cover.jpg)\n\n[University of Agder]: https://www.uia.no/\n\n---\n# A sixth slide suddenly appears\nWhat is this all about?\n",
+            "markdown": "<!--\nTheme: basic\n-->\n---\n\n# Welcome\nThis is a welcome message.\n\n---\n\n# Example\n* Point 1\n* Point 2\n\n---\n# More fun stuff\nThis project is being developed as part of a masters project at the [University of Agder].\n\n---\n# Test\nSlide.\n\n---\n\n# This is a slide with an image\nAnd here is an image: \n\n![Alt text](images/book-cover.jpg)\n\n[University of Agder]: https://www.uia.no/\n\n---\n# A sixth slide suddenly appears\nWhat is this all about?\n",
             "slides": [
                 {
                     "index": 1,

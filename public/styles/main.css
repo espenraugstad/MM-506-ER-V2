@@ -132,8 +132,6 @@ button{
     display: grid;
     grid-template-columns: 40vw 40vw;
     gap: 1rem;
-    height: 100%;
-
 }
 
 #editor{
@@ -141,10 +139,14 @@ button{
     width: 100%;
     border: 1px solid black;
     font-family: 'Roboto Mono', monospace;
+    max-height: 75vh;
+    overflow-y: auto;
 }
 
 .preview{
     border: 1px solid black;
+    max-height: 75vh;
+    overflow-y: auto;
 }
 
 .navs{
