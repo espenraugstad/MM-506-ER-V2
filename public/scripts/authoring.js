@@ -20,12 +20,11 @@ const invalidOkBtn = document.getElementById("invalidOkBtn");
 let currentPresentation = null;
 let parsedPresentation = {};
 let currentTheme = "";
-const themes = ["generic", "default", "lava"];
+const themes = ["generic", "default", "basic"];
 
 /*** EVENT LISTENERS ***/
 editor.addEventListener("input", () => {
     parsedPresentation = parsePresentation(editor.value);
-    setTheme();
     parseSlides(slidesPreview, parsedPresentation, currentTheme);
 });
 

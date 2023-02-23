@@ -1,14 +1,26 @@
 /*** || Common ***/
 .preview-slide{
     width: calc(1920px*.5);
+    max-width: calc(1920px*.5);
+    min-width: calc(1920px*.5);
     aspect-ratio: 16/9;
     transform: scale(0.5, 0.5);
     transform-origin: top center;
     margin: 1rem 0 calc(-1920px*.5*9/(16*2) + 1rem);
-    
+    border: 1px solid black;
+    overflow: clip;
 }
 
-/*** || Generic theme ***/
-.slide-generic{
-    border: 1px solid black;
+/*** || Generic theme has no styling ***/
+
+/*** || Basic theme ***/
+.slide-basic{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-image{
+    width: 50%; 
 }
