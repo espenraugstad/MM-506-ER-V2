@@ -1,0 +1,14 @@
+/*** || Common ***/
+.preview-slide{
+    width: calc(1920px*.5);
+    aspect-ratio: 16/9;
+    transform: scale(0.5, 0.5);
+    transform-origin: top center;
+    margin: 1rem 0 calc(-1920px*.5*9/(16*2) + 1rem);
+    
+}
+
+/*** || Generic theme ***/
+.slide-generic{
+    border: 1px solid black;
+}

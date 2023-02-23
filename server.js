@@ -73,7 +73,7 @@ server.get("/getPresentation/:idtoken", checkUser, async (req, res) =>{
     } else {
       res.status(404).json({message: "No presentations found"}).end();
     }
-  } else {
+  } else {''
     res.status(403).json({message: "Invalid user"}).end();
   }
 });

@@ -2,7 +2,10 @@ let globalOptions = {
     theme: "default"
 };
 
-export default function parsePresentation(markdown){
+// All the slide templates
+const slideGeneric = document.getElementById("slide-generic");
+
+export function parsePresentation(markdown){
     let slides = [];
 
     let raw = marked.parse(markdown);
@@ -24,6 +27,28 @@ export default function parsePresentation(markdown){
             slides: rawInputs
         }
     }
+}
+
+export function parseSlides(location, parsedPresentation, currentTheme) {
+    location.innerHTML = "";
+  if (Object.keys(parsedPresentation.options).length !== 0) {
+    for (let slide of parsedPresentation.slides) {
+      // Clone slide
+      let slideClone;
+      switch (currentTheme) {
+        case "generic":
+          slideClone = slideGeneric.content.cloneNode(true);
+          break;
+        default:
+          console.log("Not valid");
+          break;
+      }
+
+      let contentDiv = slideClone.children[0];
+      contentDiv.innerHTML = slide;
+      location.appendChild(contentDiv);
+    }
+  }
 }
 
 function setGlobalOptions(element){

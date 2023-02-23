@@ -139,14 +139,20 @@ button{
     width: 100%;
     border: 1px solid black;
     font-family: 'Roboto Mono', monospace;
+    height: 75vh;
     max-height: 75vh;
     overflow-y: auto;
+    margin: 0;
 }
 
 .preview{
     border: 1px solid black;
+    height: 75vh;
     max-height: 75vh;
-    overflow-y: auto;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .navs{

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/espenraugstad/MM-506-ER-V2#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "markdown-it-container": "^3.0.0"
   }
 }

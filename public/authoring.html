@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/main.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/themes.css">
     <title>MMER</title>
-</head>
-<body>
+  </head>
+  <body>
     <main class="authoring-main">
-        <h1 id="presentation-title" contenteditable="true">Authoring</h1>
-        <p id="presentation-title-edit">(Click to edit title)</p>
-        <div class="authoring-areas">
-            <textarea name="editor" id="editor" cols="30" rows="10"></textarea>
-            <div class="preview" id="slides-preview"></div>
-        </div>
-        <div class="navs">
-            <button id="save">Save</button>
-            <button id="dash">To Dashboard</button>
-            <button id="start">Start presentation</button>
-        </div>
+      <h1 id="presentation-title" contenteditable="true">Authoring</h1>
+      <p id="presentation-title-edit">(Click to edit title)</p>
+      <div class="authoring-areas">
+        <textarea name="editor" id="editor" cols="30" rows="10"></textarea>
+        <div class="preview" id="slides-preview"></div>
+      </div>
+      <div class="navs">
+        <button id="save">Save</button>
+        <button id="dash">To Dashboard</button>
+        <button id="start">Start presentation</button>
+      </div>
     </main>
+
+    <!-- Dialogs -->
+    <dialog id="invalidTheme">
+      <form method="dialog">
+        <p>Invalid theme. Using default. Currently the valid themes are:</p>
+        <ul id="theme-list"></ul>
+        <button id="invalidOkBtn">OK</button>
+      </form>
+    </dialog>
+
+    <!-- Slide templates -->
+    <!-- Generic-->
+    <template id="slide-generic">
+      <div class="preview-slide slide-generic"></div>
+    </template>
+
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="./scripts/authoring.js" type="module"></script>
-</body>
+  </body>
 </html>
