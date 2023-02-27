@@ -47,15 +47,18 @@ export function parseSlides(location, parsedPresentation, currentTheme) {
       if(imgs.length > 0){
         let img = imgs[0];
 
-        let containsText = false;
-
         // Check to see if there are any text nodes
-        for(let node of domSlide.body.childNodes){
-          console.log(node.nodeName);
+/*         for(let node of domSlide.body.childNodes){
+          console.log(node);
+
+          console.log(node);
+
           if(node.nodeName === "#text"){
             containsText = true;
+          } else {
+            containsText = false;
           }
-        }
+        } */
 
         // Get the parent element of the image
         let imgParent = img.parentElement;
@@ -76,51 +79,17 @@ export function parseSlides(location, parsedPresentation, currentTheme) {
         let imgAlt = img.alt;
         let imgOpt = parseAltText(imgAlt);
         //console.log(`Image options: ${imgOpt}`);
-        
+
         // Options is empty (default)
         if(imgOpt === ""){
           img.className = "slide-basic-image";
-          if(containsText){
-            img.className += " text-overlay" 
+          // If there is more than just one image, add an overlay to the image
+          if(domSlide.body.childElementCount > 1){
+            img.className += " text-overlay" ;
           }
         }
         
       }
-      /* if (imgs.length > 0) {
-        for (let img of imgs) {
-          // Get the parent element of the image
-          let imgParent = img.parentElement;
-
-          // Add the image to the domSlide
-          domSlide.body.append(img);
-
-          // Put it before its old parent element
-          imgParent.before(img);
-
-          // Remove the old parent element
-          domSlide.body.removeChild(imgParent);
-
-          // Add a class name
-          img.className = "slide-image";
-
-          // Fetch the alt text of the image
-          let imgAlt = img.alt; */
-
-          // Parse it to see if there are any image options
-          /* let [imgStyles, actualAlt] = parseAltText(imgAlt);
-          img.alt = actualAlt;
-          console.log(imgStyles);
-          // Style the image
-          let imgStyle = "";
-          for (let style of imgStyles) {
-            console.log("Styling");
-            imgStyle += `${style};`;
-          }
-          console.log(imgStyle);
-          img.style = imgStyle; 
-        }
-      }
-      */
 
       // Re-serialize the DOMs to a string.
       const ser = new XMLSerializer();
@@ -157,7 +126,6 @@ function parseAltText(text) {
   } else {
     options = "";
   }
-  
   return options
   // Extract the actual alt text, if any
   //let actualAlt = text.replace(`[${rawStyles}]`, "");

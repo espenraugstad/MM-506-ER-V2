@@ -22,11 +22,12 @@
 }
 
 .slide-basic.preview-slide{
-    transform: scale(0.5,0.5);
+    overflow: clip;
 }
 
 .slide-basic-image{
     object-fit: cover;
+    transform: scale(.5, .5);
 }
 
 .text-overlay{

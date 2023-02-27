@@ -14,8 +14,6 @@ const invalidTheme = document.getElementById("invalidTheme");
 const themeList = document.getElementById("theme-list");
 const invalidOkBtn = document.getElementById("invalidOkBtn");
 
-
-
 /*** GLOBAL VARIABLES ***/
 let currentPresentation = null;
 let parsedPresentation = {};
@@ -45,8 +43,6 @@ dash.addEventListener("click", () => {
   parseSlides(slidesPreview, parsedPresentation, currentTheme);
 })();
 
-
-
 async function getPresentation() {
   let url = new URLSearchParams(location.search);
   let pid = url.get("pid");
@@ -57,6 +53,7 @@ async function getPresentation() {
     `/getPresentation/${idtoken}`,
     new Config("get", "", localStorage.getItem("sillytoken")).cfg
   );
+  
   currentPresentation = await presentation.json();
 
   if (presentation.status === 200) {
