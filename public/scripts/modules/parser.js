@@ -37,10 +37,56 @@ export function parseSlides(location, parsedPresentation, currentTheme) {
       // Parsing the string to DOMs to do stuff.
       const dp = new DOMParser();
       let domSlide = dp.parseFromString(slide, "text/html");
+      //console.log(domSlide.body.childNodes);
 
       // Select any potential images and move them out of their parent
       let imgs = domSlide.querySelectorAll("img");
-      if (imgs.length > 0) {
+
+      // Slides are limited to one single image
+
+      if(imgs.length > 0){
+        let img = imgs[0];
+
+        let containsText = false;
+
+        // Check to see if there are any text nodes
+        for(let node of domSlide.body.childNodes){
+          console.log(node.nodeName);
+          if(node.nodeName === "#text"){
+            containsText = true;
+          }
+        }
+
+        // Get the parent element of the image
+        let imgParent = img.parentElement;
+
+        // Add the image to the domSlide
+        domSlide.body.append(img);
+
+        // Put it before its old parent element
+        imgParent.before(img);
+
+        // Remove the old parent element
+        domSlide.body.removeChild(imgParent);
+
+        // Add a class name
+        //img.className = "slide-image";
+
+        // Fetch the alt text of the image
+        let imgAlt = img.alt;
+        let imgOpt = parseAltText(imgAlt);
+        //console.log(`Image options: ${imgOpt}`);
+        
+        // Options is empty (default)
+        if(imgOpt === ""){
+          img.className = "slide-basic-image";
+          if(containsText){
+            img.className += " text-overlay" 
+          }
+        }
+        
+      }
+      /* if (imgs.length > 0) {
         for (let img of imgs) {
           // Get the parent element of the image
           let imgParent = img.parentElement;
@@ -58,10 +104,10 @@ export function parseSlides(location, parsedPresentation, currentTheme) {
           img.className = "slide-image";
 
           // Fetch the alt text of the image
-          let imgAlt = img.alt;
+          let imgAlt = img.alt; */
 
           // Parse it to see if there are any image options
-          let [imgStyles, actualAlt] = parseAltText(imgAlt);
+          /* let [imgStyles, actualAlt] = parseAltText(imgAlt);
           img.alt = actualAlt;
           console.log(imgStyles);
           // Style the image
@@ -71,9 +117,10 @@ export function parseSlides(location, parsedPresentation, currentTheme) {
             imgStyle += `${style};`;
           }
           console.log(imgStyle);
-          img.style = imgStyle;
+          img.style = imgStyle; 
         }
       }
+      */
 
       // Re-serialize the DOMs to a string.
       const ser = new XMLSerializer();
@@ -103,15 +150,21 @@ export function parseSlides(location, parsedPresentation, currentTheme) {
 }
 
 function parseAltText(text) {
-  // Extract all info between [].
-  let rawStyles = text.slice(text.indexOf("[") + 1, text.indexOf("]"));
-
+  // Extract all info between @ and whitespace.
+  let options = "";
+  if(text.includes("[")){
+    options = text.slice(text.indexOf("[") + 1, text.indexOf("]"));
+  } else {
+    options = "";
+  }
+  
+  return options
   // Extract the actual alt text, if any
-  let actualAlt = text.replace(`[${rawStyles}]`, "");
+  //let actualAlt = text.replace(`[${rawStyles}]`, "");
 
   // Separate raw styles into an array
-  let styles = rawStyles.split(",");
-  return [styles, actualAlt];
+  //let styles = rawStyles.split(",");
+  //return [styles, actualAlt];
 }
 
 function setGlobalOptions(element) {
